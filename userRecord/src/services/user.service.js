@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 import User from '../models/user.model';
 
-//create new user
+
 export const newUser = async (body) => {
   const user = await User.findOne({email:body.email});
   if(user){
