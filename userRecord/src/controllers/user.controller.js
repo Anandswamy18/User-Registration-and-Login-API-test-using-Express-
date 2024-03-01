@@ -17,6 +17,19 @@ export const newUser = async (req, res, next) => {
 };
 
 
+export const login = async (req, res, next) => {
+  try {
+   
+    const data = await UserService.login(req.body.email,req.body.password);
+    res.status(HttpStatus.CREATED).json({
+      code: HttpStatus.CREATED,
+      data: data,
+      message: 'User LoggedIn successfully'
 
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 

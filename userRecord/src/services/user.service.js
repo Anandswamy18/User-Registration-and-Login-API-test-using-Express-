@@ -12,3 +12,13 @@ export const newUser = async (body) => {
 
 };
 
+export const login = async(email,password)=>{
+  const data = await User.findOne({email:email});
+  if(!data){
+    throw Error("user not found");
+  }
+  else if(data.password!=password){
+    throw Error("incorrect password");
+  }
+  return data;
+}
