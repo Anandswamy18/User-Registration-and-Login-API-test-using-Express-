@@ -51,10 +51,10 @@ export const newNote = async (req, res, next) => {
 
   export const deleteNote = async (req, res, next) => {
     try {
-      await UserService.deletNote(req.params._id);
+      const data=await UserService.deletNote(req.params._id);
       res.status(HttpStatus.OK).json({
         code: HttpStatus.OK,
-        data: [],
+        data: data,
         message: 'Note deleted successfully'
       });
     } catch (error) {

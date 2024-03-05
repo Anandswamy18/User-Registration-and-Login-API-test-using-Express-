@@ -26,8 +26,8 @@ export const getNote = async (id) => {
 
 
 export const deletNote = async (id) => {
-  await Note.findByIdAndDelete(id);
-  return '';
+  const data = await Note.findByIdAndDelete(id);
+  return data;
 };
 
 

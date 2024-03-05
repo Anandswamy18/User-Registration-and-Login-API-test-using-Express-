@@ -15,7 +15,9 @@ import {
 import logger, { logStream } from './config/logger';
 
 import morgan from 'morgan';
-
+import swagger from '../src/swagger/swagger.json';
+import swaggerUI from 'swagger-ui-express'
+import swaggerDocs from 'swagger-jsdoc'
 const app = express();
 const host = process.env.APP_HOST;
 const port = process.env.APP_PORT;
@@ -29,6 +31,10 @@ app.use(morgan('combined', { stream: logStream }));
 
 database();
 
+  
+
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swagger))
+
 app.use(`/api/${api_version}`, routes());
 app.use(appErrorHandler);
 app.use(genericErrorHandler);
@@ -37,5 +43,9 @@ app.use(notFound);
 app.listen(port, () => {
   logger.info(`Server started at ${host}:${port}/api/${api_version}/`);
 });
+
+
+
+
 
 export default app;
