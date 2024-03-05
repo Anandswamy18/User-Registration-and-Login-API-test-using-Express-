@@ -17,8 +17,10 @@ export const login = async(email,password)=>{
   if(!data){
     throw Error("user not found");
   }
-  else if(data.password!=password){
-    throw Error("incorrect password");
+  const isPasswordValid = await bcrypt.compare(password, data.password);
+
+  if (!isPasswordValid) {
+    throw Error("Incorrect password");
   }
   return jwt.sign({userId:data._id},process.env.SECRET_KEY);
 }         
