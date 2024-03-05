@@ -1,5 +1,5 @@
-import userModel from '../models/user.model';
 import User from '../models/user.model';
+const jwt = require("jsonwebtoken");
 
 //create new user
 export const newUser = async (body) => {
@@ -20,5 +20,5 @@ export const login = async(email,password)=>{
   else if(data.password!=password){
     throw Error("incorrect password");
   }
-  return data;
-}
+  return jwt.sign({userId:data._id},process.env.SECRET_KEY);
+}         
