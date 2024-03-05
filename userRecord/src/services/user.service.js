@@ -1,5 +1,6 @@
 import User from '../models/user.model';
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt')
 
 //create new user
 export const newUser = async (body) => {
